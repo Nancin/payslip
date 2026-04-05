@@ -251,11 +251,11 @@ svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;
           <div class="two-col">
             <div class="field">
               <label>Weekly Threshold</label>
-              <div class="input-wrap"><input type="number" id="it_allowance" step="1" value="242.9" oninput="livePreview()"/><span class="input-suffix">£/wk</span></div>
+              <div class="input-wrap"><input type="number" id="it_allowance" step="0.01" value="242" data-real-value="242.9" oninput="livePreview()" readonly/><span class="input-suffix">£/wk</span></div>
             </div>
             <div class="field">
               <label>Tax Rate</label>
-              <div class="input-wrap"><input type="number" id="it_rate" step="1" value="20" oninput="livePreview()"/><span class="input-suffix">%</span></div>
+              <div class="input-wrap"><input type="number" id="it_rate" step="1" value="20" oninput="livePreview()" readonly/><span class="input-suffix">%</span></div>
             </div>
           </div>
         </div>
@@ -269,11 +269,11 @@ svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;
           <div class="two-col">
             <div class="field">
               <label>Weekly Threshold</label>
-              <div class="input-wrap"><input type="number" id="ni_threshold" step="1" value="242" oninput="livePreview()"/><span class="input-suffix">£/wk</span></div>
+              <div class="input-wrap"><input type="number" id="ni_threshold" step="1" value="242" oninput="livePreview()" readonly/><span class="input-suffix">£/wk</span></div>
             </div>
             <div class="field">
               <label>Tax Rate</label>
-              <div class="input-wrap"><input type="number" id="ni_rate" step="0.1" value="8" oninput="livePreview()"/><span class="input-suffix">%</span></div>
+              <div class="input-wrap"><input type="number" id="ni_rate" step="0.1" value="8" oninput="livePreview()" readonly/><span class="input-suffix">%</span></div>
             </div>
           </div>
         </div>
@@ -375,7 +375,7 @@ tog.addEventListener('touchend', function(e) {
 })();
 
 /* ── Calc helpers ── */
-function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
+function v(id){ const el = document.getElementById(id); return el.dataset.realValue ? parseFloat(el.dataset.realValue) : parseFloat(el.value) || 0;}
 function s(id) { return document.getElementById(id).value || ''; }
 function fmt(n) { return '£' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
 function fmtN(n) { return n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
