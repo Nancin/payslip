@@ -181,7 +181,7 @@ svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;
       <div class="card-body">
         <div class="field">
           <label>Hourly Rate</label>
-          <div class="input-wrap"><input type="number" id="hourly_rate" step="0.01" value="14.54" oninput="livePreview()"/><span class="input-suffix">£/h</span></div>
+          <div class="input-wrap"><input type="number" id="hourly_rate" step="0.01" value="" oninput="livePreview()" placeholder="Your Wage"/><span class="input-suffix">£/h</span></div>
         </div>
         <div class="two-col">
           <div class="field">
@@ -195,8 +195,8 @@ svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;
           <div class="field">
             <label>Overtime (Mon–Fri)</label>
             <div class="two-col" style="gap:6px">
-              <div class="input-wrap"><input type="number" id="ot_h" min="0" max="99" step="1" value="1" oninput="livePreview()" placeholder="hh"/><span class="input-suffix">h</span></div>
-              <div class="input-wrap"><input type="number" id="ot_m" min="0" max="59" step="1" value="15" oninput="livePreview()" placeholder="mm"/><span class="input-suffix">m</span></div>
+              <div class="input-wrap"><input type="number" id="ot_h" min="0" max="99" step="1" value="0" oninput="livePreview()" placeholder="hh"/><span class="input-suffix">h</span></div>
+              <div class="input-wrap"><input type="number" id="ot_m" min="0" max="59" step="1" value="0" oninput="livePreview()" placeholder="mm"/><span class="input-suffix">m</span></div>
             </div>
             <div class="time-display" id="ot_hours_disp"><span>= 1h 15min</span></div>
           </div>
@@ -231,12 +231,12 @@ svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;
         </div>
         <div class="field">
           <label>Weekly Bonus / Allowance</label>
-          <div class="input-wrap"><input type="number" id="bonus" step="0.01" value="10" oninput="livePreview()"/><span class="input-suffix">£</span></div>
+          <div class="input-wrap"><input type="number" id="bonus" step="0.01" value="0" oninput="livePreview()" placeholder="0"/><span class="input-suffix">£</span></div>
           <div class="field-hint">bonuses, tips, extras</div>
         </div>
         <div class="field">
           <label>Pay Period</label>
-          <div class="input-wrap"><input type="text" id="pay_period"/></div>
+          <div class="input-wrap"><input type="text" id="pay_period" readonly/></div>
         </div>
       </div>
     </div>
@@ -286,12 +286,12 @@ svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;
         <div class="card-body">
           <div class="field">
             <label>Employee Pension</label>
-            <div class="input-wrap"><input type="number" id="pen_emp_pct" step="0.1" value="5" oninput="livePreview()"/><span class="input-suffix">%</span></div>
+            <div class="input-wrap"><input type="number" id="pen_emp_pct" step="0.1" value="0" oninput="livePreview()" placeholder="0"/><span class="input-suffix">%</span></div>
             <div class="field-hint">% of gross</div>
           </div>
           <div class="field" style="margin-top:.5rem">
             <label>Other Weekly Deductions</label>
-            <div class="input-wrap"><input type="number" id="other_ded" step="0.01" value="0" oninput="livePreview()"/><span class="input-suffix">£</span></div>
+            <div class="input-wrap"><input type="number" id="other_ded" step="0.01" value="0" oninput="livePreview()" placeholder="0"/><span class="input-suffix">£</span></div>
             <div class="field-hint">student loan, attachment order etc.</div>
           </div>
         </div>
