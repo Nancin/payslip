@@ -436,7 +436,7 @@ function updateEarn(c) {
   if(c.otH>0)   e+='<tr><td>Overtime <span class="tag t-ot">\u00d7'+c.otM+'</span></td><td>'+fmtH(c.otH)+' \u00d7 \u00a3'+fmtN(c.rate*c.otM)+'</td><td>\u00a3'+fmtN(c.otAmt)+'</td></tr>';
   if(c.satH>0)  e+='<tr><td>Saturday <span class="tag t-sat">\u00d7'+c.wkM+'</span></td><td>'+fmtH(c.satH)+' \u00d7 \u00a3'+fmtN(c.rate*c.wkM)+'</td><td>\u00a3'+fmtN(c.satAmt)+'</td></tr>';
   if(c.sunH>0)  e+='<tr><td>Sunday <span class="tag t-sun">\u00d7'+c.wkM+'</span></td><td>'+fmtH(c.sunH)+' \u00d7 \u00a3'+fmtN(c.rate*c.wkM)+'</td><td>\u00a3'+fmtN(c.sunAmt)+'</td></tr>';
-  if(c.bonus>0) e+='<tr><td>Bonus / Extra <span class="tag t-bonus">extra</span></td><td>\u2014</td><td>\u00a3'+fmtN(c.bonus)+'</td></tr>';
+  if(c.bonus>0) e+='<tr><td>Bonus<span class="tag t-bonus">extra</span></td><td>\u2014</td><td>\u00a3'+fmtN(c.bonus)+'</td></tr>';
   if(c.penAmt>0) e+='<tr><td>Pension <span class="tag t-base">sacrifice</span></td><td>\u2014</td><td style="color:var(--red)">\u2212\u00a3'+fmtN(c.penAmt)+'</td></tr>';
   e+='<tr class="total-row"><td>Total Gross</td><td></td><td>\u00a3'+fmtN(c.gross)+'</td></tr>';
   document.getElementById('s-earn').innerHTML=e;
