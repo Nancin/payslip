@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Weekly Payslip 2026/27</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Inter',sans-serif;min-height:100vh;padding:2rem 1rem;
+  background:#F7F6F3;color:#1A1917;
+  --surface:#FFFFFF;--surface2:#F3F2EF;--border:#E0DDD7;--border2:#C8C5BE;
+  --text:#1A1917;--text2:#5C5A55;--text3:#9A9790;
+  --blue-dark:#042C53;--blue-mid:#185FA5;--blue-light:#E6F1FB;--blue-muted:#85B7EB;
+  --teal:#0F6E56;--teal-light:#E1F5EE;--teal-mid:#5DCAA5;
+  --red:#A32D2D;--red-light:#FCEBEB;
+  --amber:#854F0B;--amber-light:#FAEEDA;
+  --purple:#3C3489;--purple-light:#EEEDFE;
+  --green:#3B6D11;--green-light:#EAF3DE;
+  --radius:10px;--radius-sm:7px;
+  --toggle-bg:#E0DDD7;--toggle-thumb:#fff;
+  -webkit-transition:background .25s,color .25s;
+  transition:background .25s,color .25s;
+}
+
+body.dark{
+  background:#111110;color:#F0EFED;
+  --surface:#1C1C1A;--surface2:#242422;--border:#2E2E2B;--border2:#3D3D3A;
+  --text:#F0EFED;--text2:#A8A59E;--text3:#6A6762;
+  --blue-dark:#0D3F73;--blue-mid:#3080C8;--blue-light:#0C1E2E;--blue-muted:#5A9DD4;
+  --teal:#1A9A78;--teal-light:#0A1F19;--teal-mid:#3DB890;
+  --red:#CC4444;--red-light:#220E0E;
+  --amber:#C47B20;--amber-light:#211508;
+  --purple:#6658D4;--purple-light:#131128;
+  --green:#5A9D28;--green-light:#0D1A06;
+  --toggle-bg:#3D3D3A;--toggle-thumb:#F0EFED;
+}
+
+.container{max-width:860px;margin:0 auto}
+.page-header{margin-bottom:1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.page-header-left{display:flex;flex-direction:column}
+.page-title{font-size:24px;font-weight:600;color:var(--text)}
+.page-sub{font-size:13px;color:var(--text2);margin-top:4px}
+
+.theme-toggle{
+  display:flex;align-items:center;gap:8px;
+  cursor:pointer;flex-shrink:0;
+  -webkit-user-select:none;user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  padding:6px;border-radius:8px;
+}
+.toggle-track{
+  width:48px;height:26px;border-radius:13px;
+  background:var(--toggle-bg);
+  position:relative;
+  border:1.5px solid var(--border2);
+  -webkit-transition:background .25s;
+  transition:background .25s;
+  flex-shrink:0;
+}
+.toggle-thumb{
+  position:absolute;top:3px;left:3px;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--toggle-thumb);
+  -webkit-transition:-webkit-transform .25s,background .25s;
+  transition:transform .25s,background .25s;
+  box-shadow:0 1px 4px rgba(0,0,0,.2);
+}
+body.dark .toggle-thumb{
+  -webkit-transform:translateX(22px);
+  transform:translateX(22px);
+  background:#3080C8;
+}
+.toggle-icon{font-size:16px;line-height:1;display:block}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem}
+@media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;-webkit-transition:background .25s,border-color .25s;transition:background .25s,border-color .25s}
+.card-head{padding:.75rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--surface)}
+.card-icon{width:30px;height:30px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon-blue{background:var(--blue-light)}.icon-teal{background:var(--teal-light)}.icon-amber{background:var(--amber-light)}.icon-red{background:var(--red-light)}
+.card-head-title{font-size:13px;font-weight:600;color:var(--text)}
+.card-body{padding:1rem}
+.field{margin-bottom:.875rem}.field:last-child{margin-bottom:0}
+.field label{font-size:11px;font-weight:600;color:var(--text2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em}
+.field-hint{font-size:11px;color:var(--text3);margin-top:3px}
+.input-wrap{position:relative}
+.input-wrap input{
+  width:100%;height:40px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--surface2);color:var(--text);
+  font-size:14px;padding:0 42px 0 12px;
+  font-family:'JetBrains Mono',monospace;
+  -webkit-transition:border-color .15s;transition:border-color .15s;
+  -moz-appearance:textfield;-webkit-appearance:none;appearance:none;
+}
+.input-wrap input::-webkit-outer-spin-button,.input-wrap input::-webkit-inner-spin-button{-webkit-appearance:none}
+.input-wrap input[type=text]{font-family:'Inter',sans-serif;font-size:13px;padding:0 12px}
+.input-wrap input:focus{outline:none;border-color:var(--blue-mid)}
+.input-suffix{position:absolute;right:11px;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);font-size:11px;color:var(--text3);font-family:'Inter',sans-serif;pointer-events:none;font-weight:500}
+.time-display{font-size:11px;color:var(--text3);margin-top:3px;font-family:'JetBrains Mono',monospace;font-weight:500}
+.time-display span{color:var(--text2)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.right-stack{display:flex;flex-direction:column;gap:1rem}
+.calc-btn{
+  width:100%;height:52px;border-radius:var(--radius);border:none;
+  background:var(--blue-dark);color:#E6F1FB;
+  font-size:15px;font-weight:600;cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:.02em;
+  -webkit-transition:opacity .15s;transition:opacity .15s;
+  margin-top:.25rem;-webkit-tap-highlight-color:transparent;
+}
+.calc-btn:hover{opacity:.85}.calc-btn:active{opacity:.9}
+
+.slip-outer{margin-top:1.75rem;background:#E8E6E1;border-radius:16px;padding:1.25rem;display:none}
+body.dark .slip-outer{background:#1A1A18}
+.slip{background:var(--surface);border-radius:14px;border:1px solid var(--border);overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.slip-top{background:var(--blue-dark);padding:1.5rem}
+.slip-top-row{display:flex;justify-content:space-between;align-items:center}
+.slip-wordmark{font-size:10px;letter-spacing:.16em;color:var(--blue-muted);text-transform:uppercase;font-weight:600}
+.slip-pill{font-size:10px;background:var(--blue-mid);color:#B5D4F4;padding:4px 13px;border-radius:20px;font-weight:600;letter-spacing:.05em}
+.slip-gross-row{margin-top:.875rem;display:flex;align-items:baseline;gap:10px}
+.slip-gross-val{font-size:32px;font-weight:600;color:#F0EFED;font-family:'JetBrains Mono',monospace}
+.slip-gross-lbl{font-size:12px;color:var(--blue-muted)}
+.slip-period{font-size:12px;color:var(--blue-muted);margin-top:3px}
+.slip-bar-track{height:4px;background:#0C447C;border-radius:2px;margin-top:1.25rem}
+.slip-bar-fill{height:100%;background:var(--teal-mid);border-radius:2px;-webkit-transition:width .5s ease;transition:width .5s ease}
+.slip-metrics{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
+.sm-cell{padding:.875rem 1.125rem;border-right:1px solid var(--border)}.sm-cell:last-child{border-right:none}
+.sm-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:4px;font-weight:600}
+.sm-val{font-size:17px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.v-blue{color:var(--blue-mid)}.v-red{color:var(--red)}.v-green{color:var(--green)}
+.slip-section{padding:1rem 1.25rem}.slip-section+.slip-section{border-top:1px solid var(--border)}
+.slip-sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--text3);margin-bottom:.75rem}
+.earn-table{width:100%;border-collapse:collapse}
+.earn-table td{padding:7px 0;font-size:13px;vertical-align:middle;border-bottom:1px solid var(--border)}
+.earn-table tr:last-child td{border-bottom:none}
+.earn-table td:nth-child(2){text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2)}
+.earn-table td:nth-child(3){text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--text)}
+.earn-table .total-row td{font-weight:700;font-size:14px;padding-top:11px;border-top:2px solid var(--border2);border-bottom:none}
+.tag{display:inline-block;font-size:9px;padding:2px 7px;border-radius:20px;font-weight:700;margin-left:5px;vertical-align:middle;letter-spacing:.03em}
+.t-base{background:var(--teal-light);color:var(--teal)}.t-ot{background:var(--amber-light);color:var(--amber)}
+.t-sat{background:var(--blue-light);color:var(--blue-mid)}.t-sun{background:var(--red-light);color:var(--red)}
+.t-bonus{background:var(--purple-light);color:var(--purple)}
+.ded-table{width:100%;border-collapse:collapse}
+.ded-table td{padding:7px 0;font-size:13px;border-bottom:1px solid var(--border)}
+.ded-table tr:last-child td{border-bottom:none}
+.ded-table td:nth-child(2){text-align:right;font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--red)}
+.ded-table .total-row td{font-weight:700;font-size:14px;padding-top:11px;border-top:2px solid var(--border2);border-bottom:none}
+.ded-table .total-row td:nth-child(2){color:var(--red)}
+.ded-note{font-size:11px;color:var(--text3);margin-left:4px}
+.net-box{margin:0 1.25rem 1.25rem;background:var(--blue-dark);border-radius:var(--radius);padding:1.125rem 1.25rem;display:flex;justify-content:space-between;align-items:center}
+.net-lbl{font-size:11px;color:var(--blue-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.net-sub{font-size:11px;color:#378ADD;margin-top:3px}
+.net-val{font-size:30px;font-weight:600;color:#F0EFED;font-family:'JetBrains Mono',monospace}
+.slip-foot{padding:.75rem 1.25rem;background:var(--surface2);font-size:10px;color:var(--text3);display:flex;justify-content:space-between;border-top:1px solid var(--border)}
+svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;stroke-linejoin:round;display:block}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="page-title">Weekly Payslip 2026/27</div>
+      <div class="page-sub">Weekly Calculator · Income Tax · National Insurance · Pension</div>
+    </div>
+    <div class="theme-toggle" id="themeToggle">
+      <span class="toggle-icon">☀️</span>
+      <div class="toggle-track"><div class="toggle-thumb"></div></div>
+      <span class="toggle-icon">🌙</span>
+    </div>
+  </div>
+
+  <div class="form-grid">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon icon-blue"><svg class="ico" viewBox="0 0 16 16" stroke="#185FA5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M5 5.5h6M5 10.5h4"/></svg></div>
+        <div class="card-head-title">Rate and Hours</div>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label>Hourly Rate</label>
+          <div class="input-wrap"><input type="number" id="hourly_rate" step="0.01" value="14.54" oninput="livePreview()"/><span class="input-suffix">£/h</span></div>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label>Weekly Hours</label>
+            <div class="two-col" style="gap:6px">
+              <div class="input-wrap"><input type="number" id="base_h" min="0" max="168" step="1" value="37" oninput="livePreview()" placeholder="hh"/><span class="input-suffix">h</span></div>
+              <div class="input-wrap"><input type="number" id="base_m" min="0" max="59" step="1" value="30" oninput="livePreview()" placeholder="mm"/><span class="input-suffix">m</span></div>
+            </div>
+            <div class="time-display" id="base_hours_disp"><span>= 37h 30min</span></div>
+          </div>
+          <div class="field">
+            <label>Overtime (Mon–Fri)</label>
+            <div class="two-col" style="gap:6px">
+              <div class="input-wrap"><input type="number" id="ot_h" min="0" max="99" step="1" value="1" oninput="livePreview()" placeholder="hh"/><span class="input-suffix">h</span></div>
+              <div class="input-wrap"><input type="number" id="ot_m" min="0" max="59" step="1" value="15" oninput="livePreview()" placeholder="mm"/><span class="input-suffix">m</span></div>
+            </div>
+            <div class="time-display" id="ot_hours_disp"><span>= 1h 15min</span></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Overtime Multiplier (Mon-Fri)</label>
+          <div class="input-wrap"><input type="number" id="ot_mult" step="0.1" value="1.5" oninput="livePreview()"/><span class="input-suffix">×</span></div>
+          <div class="time-display" id="ot_rate_disp"><span>= £0.00/h</span></div>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label>Saturday</label>
+            <div class="two-col" style="gap:6px">
+              <div class="input-wrap"><input type="number" id="sat_h" min="0" max="24" step="1" value="0" oninput="livePreview()" placeholder="hh"/><span class="input-suffix">h</span></div>
+              <div class="input-wrap"><input type="number" id="sat_m" min="0" max="59" step="1" value="0" oninput="livePreview()" placeholder="mm"/><span class="input-suffix">m</span></div>
+            </div>
+            <div class="time-display" id="sat_hours_disp"><span>= 0h 0min</span></div>
+          </div>
+          <div class="field">
+            <label>Sunday</label>
+            <div class="two-col" style="gap:6px">
+              <div class="input-wrap"><input type="number" id="sun_h" min="0" max="24" step="1" value="0" oninput="livePreview()" placeholder="hh"/><span class="input-suffix">h</span></div>
+              <div class="input-wrap"><input type="number" id="sun_m" min="0" max="59" step="1" value="0" oninput="livePreview()" placeholder="mm"/><span class="input-suffix">m</span></div>
+            </div>
+            <div class="time-display" id="sun_hours_disp"><span>= 0h 0min</span></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Overtime Multiplier (Sat + Sun)</label>
+          <div class="input-wrap"><input type="number" id="wk_mult" step="0.1" value="1.5" oninput="livePreview()"/><span class="input-suffix">×</span></div>
+          <div class="time-display" id="wk_rate_disp"><span>= £0.00/h</span></div>
+        </div>
+        <div class="field">
+          <label>Weekly Bonus / Allowance</label>
+          <div class="input-wrap"><input type="number" id="bonus" step="0.01" value="10" oninput="livePreview()"/><span class="input-suffix">£</span></div>
+          <div class="field-hint">bonuses, tips, extras</div>
+        </div>
+        <div class="field">
+          <label>Pay Period</label>
+          <div class="input-wrap"><input type="text" id="pay_period"/></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-stack">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon icon-red"><svg class="ico" viewBox="0 0 16 16" stroke="#A32D2D"><path d="M3 13h10M8 3v10M5 6l3-3 3 3"/></svg></div>
+          <div class="card-head-title">Income Tax (IT)</div>
+        </div>
+        <div class="card-body">
+          <div class="two-col">
+            <div class="field">
+              <label>Weekly Threshold</label>
+              <div class="input-wrap"><input type="number" id="it_allowance" step="1" value="242.9" oninput="livePreview()"/><span class="input-suffix">£/wk</span></div>
+            </div>
+            <div class="field">
+              <label>Tax Rate</label>
+              <div class="input-wrap"><input type="number" id="it_rate" step="1" value="20" oninput="livePreview()"/><span class="input-suffix">%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon icon-amber"><svg class="ico" viewBox="0 0 16 16" stroke="#854F0B"><circle cx="8" cy="8" r="5.5"/><path d="M8 5v3l1.5 1.5"/></svg></div>
+          <div class="card-head-title">National Insurance (NI)</div>
+        </div>
+        <div class="card-body">
+          <div class="two-col">
+            <div class="field">
+              <label>Weekly Threshold</label>
+              <div class="input-wrap"><input type="number" id="ni_threshold" step="1" value="242" oninput="livePreview()"/><span class="input-suffix">£/wk</span></div>
+            </div>
+            <div class="field">
+              <label>Tax Rate</label>
+              <div class="input-wrap"><input type="number" id="ni_rate" step="0.1" value="8" oninput="livePreview()"/><span class="input-suffix">%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-icon icon-teal"><svg class="ico" viewBox="0 0 16 16" stroke="#0F6E56"><path d="M8 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/><path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5"/></svg></div>
+          <div class="card-head-title">Pension and Other Deductions</div>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label>Employee Pension</label>
+            <div class="input-wrap"><input type="number" id="pen_emp_pct" step="0.1" value="5" oninput="livePreview()"/><span class="input-suffix">%</span></div>
+            <div class="field-hint">% of gross</div>
+          </div>
+          <div class="field" style="margin-top:.5rem">
+            <label>Other Weekly Deductions</label>
+            <div class="input-wrap"><input type="number" id="other_ded" step="0.01" value="0" oninput="livePreview()"/><span class="input-suffix">£</span></div>
+            <div class="field-hint">student loan, attachment order etc.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="calc-btn" onclick="generate()">Calculate and generate payslip</button>
+
+  <div class="slip-outer" id="slip-outer">
+    <div class="slip">
+      <div class="slip-top">
+        <div class="slip-top-row">
+          <div class="slip-wordmark">UK Weekly Pay Statement</div>
+          <div class="slip-pill" id="s-pill">Week 1</div>
+        </div>
+        <div class="slip-gross-row">
+          <div class="slip-gross-val" id="s-gross-top">£0.00</div>
+          <div class="slip-gross-lbl">brutto</div>
+        </div>
+        <div class="slip-period" id="s-period-top">—</div>
+        <div class="slip-bar-track"><div class="slip-bar-fill" id="s-prog" style="width:0%"></div></div>
+      </div>
+      <div class="slip-metrics">
+        <div class="sm-cell"><div class="sm-lbl">Total Hours</div><div class="sm-val v-blue" id="s-total-h">0h</div></div>
+        <div class="sm-cell"><div class="sm-lbl">Deductions</div><div class="sm-val v-red" id="s-total-ded">£0.00</div></div>
+        <div class="sm-cell"><div class="sm-lbl">Net Pay</div><div class="sm-val v-green" id="s-net-top">£0.00</div></div>
+      </div>
+      <div class="slip-section"><div class="slip-sec-title">Earnings</div><table class="earn-table" id="s-earn"></table></div>
+      <div class="slip-section"><div class="slip-sec-title">Deductions</div><table class="ded-table" id="s-ded"></table></div>
+      <div class="net-box">
+        <div>
+          <div class="net-lbl">Net Pay</div>
+          <div class="net-sub" id="s-net-sub">after deductions</div>
+        </div>
+        <div class="net-val" id="s-net-big">£0.00</div>
+      </div>
+      <div class="slip-foot">
+        <span>Click "Calculate" to generate payslip</span>
+        <span>IT · NI · Pension</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── Theme toggle — Safari-safe ── */
+function applyTheme(dark) {
+  if (dark) {
+    document.body.className = 'dark';
+  } else {
+    document.body.className = '';
+  }
+}
+
+function toggleTheme() {
+  var isDark = document.body.className === 'dark';
+  applyTheme(!isDark);
+  try { localStorage.setItem('payslip-theme', !isDark ? 'dark' : 'light'); } catch(e) {}
+}
+
+/* Attach both click and touchend so iOS doesn't eat the event */
+var tog = document.getElementById('themeToggle');
+tog.addEventListener('click', function(e) {
+  e.preventDefault();
+  toggleTheme();
+});
+tog.addEventListener('touchend', function(e) {
+  e.preventDefault();
+  toggleTheme();
+});
+
+/* Init from localStorage or system preference */
+(function() {
+  var saved;
+  try { saved = localStorage.getItem('payslip-theme'); } catch(e) {}
+  if (saved === 'dark') {
+    applyTheme(true);
+  } else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme(true);
+  }
+})();
+
+/* ── Calc helpers ── */
+function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
+function s(id) { return document.getElementById(id).value || ''; }
+function fmt(n) { return '£' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function fmtN(n) { return n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function round2(n) { return Math.round(n * 100) / 100; }
+
+function getHM(p) {
+  var h = parseInt(document.getElementById(p+'_h').value) || 0;
+  var m = parseInt(document.getElementById(p+'_m').value) || 0;
+  return h + m / 60;
+}
+function fmtHM(p) {
+  var h = parseInt(document.getElementById(p+'_h').value) || 0;
+  var m = parseInt(document.getElementById(p+'_m').value) || 0;
+  return h + 'h ' + (m > 0 ? m + 'min' : '0min');
+}
+function fmtH(h) {
+  var hh = Math.floor(h);
+  var mm = Math.round((h - hh) * 60);
+  return hh + 'h' + (mm > 0 ? ' ' + mm + 'min' : '');
+}
+
+function updateTimeDisplays() {
+  [['base','base_hours'],['ot','ot_hours'],['sat','sat_hours'],['sun','sun_hours']].forEach(function(p) {
+    var el = document.getElementById(p[1]+'_disp');
+    if (el) el.innerHTML = '<span>= ' + fmtHM(p[0]) + '</span>';
+  });
+}
+function updateRateDisplays() {
+  var r = v('hourly_rate');
+  var a = document.getElementById('ot_rate_disp');
+  if (a) a.innerHTML = '<span>= £' + fmtN(r * v('ot_mult')) + '/h</span>';
+  var b = document.getElementById('wk_rate_disp');
+  if (b) b.innerHTML = '<span>= £' + fmtN(r * v('wk_mult')) + '/h</span>';
+}
+
+function calc() {
+  var rate=v('hourly_rate'), baseH=getHM('base'), otH=getHM('ot'), otM=v('ot_mult'),
+      satH=getHM('sat'), sunH=getHM('sun'), wkM=v('wk_mult'), bonus=v('bonus');
+  var baseAmt=round2(baseH*rate), otAmt=round2(otH*rate*otM),
+      satAmt=round2(satH*rate*wkM), sunAmt=round2(sunH*rate*wkM);
+  var grossBefore=round2(baseAmt+otAmt+satAmt+sunAmt+bonus);
+  var itA=v('it_allowance'), itR=v('it_rate')/100, niT=v('ni_threshold'), niR=v('ni_rate')/100,
+      otherDed=v('other_ded'), penPct=v('pen_emp_pct')/100;
+  var penAmt=round2((baseAmt+bonus)*penPct);
+  var gross=round2(grossBefore-penAmt);
+  var taxIT=round2(Math.max(0,gross-itA)), taxNI=round2(Math.max(0,gross-niT));
+  var itAmt=round2(taxIT*itR), niAmt=round2(taxNI*niR);
+  var totalDed=round2(itAmt+niAmt+otherDed), net=round2(gross-totalDed);
+  return {rate:rate,baseH:baseH,otH:otH,otM:otM,satH:satH,sunH:sunH,wkM:wkM,bonus:bonus,
+    baseAmt:baseAmt,otAmt:otAmt,satAmt:satAmt,sunAmt:sunAmt,gross:gross,
+    penAmt:penAmt,itAmt:itAmt,niAmt:niAmt,otherDed:otherDed,
+    totalDed:totalDed,net:net,totalH:baseH+otH+satH+sunH,taxIT:taxIT,taxNI:taxNI};
+}
+
+function updateEarn(c) {
+  var e='';
+  if(c.baseH>0) e+='<tr><td>Basic Pay <span class="tag t-base">Mon–Fri</span></td><td>'+fmtH(c.baseH)+' \u00d7 \u00a3'+fmtN(c.rate)+'</td><td>\u00a3'+fmtN(c.baseAmt)+'</td></tr>';
+  if(c.otH>0)   e+='<tr><td>Overtime <span class="tag t-ot">\u00d7'+c.otM+'</span></td><td>'+fmtH(c.otH)+' \u00d7 \u00a3'+fmtN(c.rate*c.otM)+'</td><td>\u00a3'+fmtN(c.otAmt)+'</td></tr>';
+  if(c.satH>0)  e+='<tr><td>Saturday <span class="tag t-sat">\u00d7'+c.wkM+'</span></td><td>'+fmtH(c.satH)+' \u00d7 \u00a3'+fmtN(c.rate*c.wkM)+'</td><td>\u00a3'+fmtN(c.satAmt)+'</td></tr>';
+  if(c.sunH>0)  e+='<tr><td>Sunday <span class="tag t-sun">\u00d7'+c.wkM+'</span></td><td>'+fmtH(c.sunH)+' \u00d7 \u00a3'+fmtN(c.rate*c.wkM)+'</td><td>\u00a3'+fmtN(c.sunAmt)+'</td></tr>';
+  if(c.bonus>0) e+='<tr><td>Bonus / Extra <span class="tag t-bonus">extra</span></td><td>\u2014</td><td>\u00a3'+fmtN(c.bonus)+'</td></tr>';
+  if(c.penAmt>0) e+='<tr><td>Pension <span class="tag t-base">sacrifice</span></td><td>\u2014</td><td style="color:var(--red)">\u2212\u00a3'+fmtN(c.penAmt)+'</td></tr>';
+  e+='<tr class="total-row"><td>Total Gross</td><td></td><td>\u00a3'+fmtN(c.gross)+'</td></tr>';
+  document.getElementById('s-earn').innerHTML=e;
+}
+function updateDed(c) {
+  var d='';
+  d+='<tr><td>Income Tax <span class="ded-note">'+v('it_rate')+'% from \u00a3'+fmtN(c.taxIT)+'</span></td><td>\u2212\u00a3'+fmtN(c.itAmt)+'</td></tr>';
+  d+='<tr><td>National Insurance <span class="ded-note">'+v('ni_rate')+'% from \u00a3'+fmtN(c.taxNI)+'</span></td><td>\u2212\u00a3'+fmtN(c.niAmt)+'</td></tr>';
+  if(c.otherDed>0) d+='<tr><td>Other Deductions</td><td>\u2212\u00a3'+fmtN(c.otherDed)+'</td></tr>';
+  d+='<tr class="total-row"><td>Total Deductions</td><td>\u2212\u00a3'+fmtN(c.totalDed)+'</td></tr>';
+  document.getElementById('s-ded').innerHTML=d;
+}
+
+function livePreview() {
+  updateTimeDisplays(); updateRateDisplays();
+  var c=calc();
+  document.getElementById('s-gross-top').textContent=fmt(c.gross);
+  document.getElementById('s-total-ded').textContent=fmt(c.totalDed);
+  document.getElementById('s-net-top').textContent=fmt(c.net);
+  document.getElementById('s-net-big').textContent=fmt(c.net);
+  document.getElementById('s-total-h').textContent=fmtH(c.totalH);
+  var pct=c.gross>0?Math.min(100,Math.round(c.net/c.gross*100)):0;
+  document.getElementById('s-prog').style.width=pct+'%';
+  document.getElementById('s-net-sub').textContent='after deductions from \u00a3'+fmtN(c.gross)+' brutto';
+  updateEarn(c); updateDed(c);
+}
+
+function generate() {
+  var period=s('pay_period');
+  document.getElementById('s-pill').textContent=period.split('\u2014')[0].trim()||period;
+  document.getElementById('s-period-top').textContent=period;
+  livePreview();
+  document.getElementById('slip-outer').style.display='block';
+  document.getElementById('slip-outer').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* iOS Safari-safe date: use numeric Date constructor, never parse strings */
+function getNextFriday() {
+  var today=new Date();
+  var d=(5-today.getDay()+7)%7||7;
+  var fri=new Date(today.getFullYear(),today.getMonth(),today.getDate()+d);
+  var dd=String(fri.getDate()).padStart(2,'0');
+  var mm=String(fri.getMonth()+1).padStart(2,'0');
+  return dd+'/'+mm+'/'+fri.getFullYear();
+}
+function getWeekNumber(d) {
+  var u=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+  var day=u.getUTCDay()||7;
+  u.setUTCDate(u.getUTCDate()+4-day);
+  var ys=new Date(Date.UTC(u.getUTCFullYear(),0,1));
+  return Math.ceil(((u-ys)/86400000+1)/7);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('pay_period').value = 'Week ' + getWeekNumber(new Date()) + ' \u2014 ' + getNextFriday();
+  livePreview();
+});
+</script>
+</body>
+</html>
