@@ -154,7 +154,7 @@ body.dark .slip-outer{background:#1A1A18}
 .net-lbl{font-size:11px;color:var(--blue-muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
 .net-sub{font-size:11px;color:#378ADD;margin-top:3px}
 .net-val{font-size:30px;font-weight:600;color:#F0EFED;font-family:'JetBrains Mono',monospace}
-.slip-foot{padding:.75rem 1.25rem;background:var(--surface2);font-size:10px;color:var(--text3);display:flex;justify-content:space-between;border-top:1px solid var(--border)}
+.slip-foot{padding:.875rem 1.25rem;background:var(--surface2);font-size:13px;color:var(--text2);border-top:1px solid var(--border);text-align:center}
 svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;stroke-linejoin:round;display:block}
 </style>
 </head>
@@ -331,7 +331,6 @@ svg.ico{width:15px;height:15px;stroke-width:1.75;fill:none;stroke-linecap:round;
       </div>
       <div class="slip-foot">
         <span id="s-foot-msg">💡 Click Calculate to generate your payslip</span>
-        <span>IT · NI · Pension</span>
       </div>
     </div>
   </div>
@@ -511,7 +510,27 @@ var MSGS = [
   '\uD83D\uDCE9 If you think you\u2019ve overpaid tax, you can claim a refund directly from HMRC.',
   '\uD83D\uDCC8 The employer pension minimum is 3% \u2014 many employers will match more if you ask.',
   '\uD83D\uDEE0\uFE0F Tool allowances can sometimes be claimed as tax relief \u2014 worth checking.',
-  '\u2728 Small wins add up \u2014 pack lunch twice a week and save \u00a3500+ a year.'
+  '\u2728 Small wins add up \u2014 pack lunch twice a week and save \u00a3500+ a year.',
+  '\uD83C\uDFE0 Working from home? You may be able to claim \u00a36/week tax relief from HMRC.',
+  '\uD83D\uDCB3 Paying into a LISA before 50 gets you a 25% government top-up \u2014 up to \u00a31,000/year.',
+  '\uD83D\uDEBF Did you know? Gym memberships through work can sometimes be tax-exempt.',
+  '\uD83D\uDC47 The higher rate tax band starts at \u00a350,270 in 2026/27.',
+  '\uD83D\uDCDE You can update your tax code by calling HMRC on 0300 200 3300.',
+  '\uD83C\uDF3F Cycle to Work schemes let you buy a bike tax-free through your employer.',
+  '\uD83D\uDED2 Childcare vouchers and Tax-Free Childcare can save families up to \u00a32,000 a year.',
+  '\uD83D\uDD52 Working more than 48 hours a week? You can opt out of the Working Time Directive.',
+  '\uD83D\uDCB5 The State Pension in 2026/27 is \u00a3221.20 per week \u2014 you need 35 qualifying NI years.',
+  '\uD83E\uDD1D Referring a friend to your employer? Many companies pay referral bonuses.',
+  '\uD83C\uDF93 Apprenticeship levy-funded training is free to employees \u2014 ask your employer.',
+  '\uD83D\uDCA1 An emergency fund of 3 months\u2019 expenses can make a huge difference to your peace of mind.',
+  '\uD83D\uDCF0 Payslip errors are more common than you\u2019d think \u2014 always double-check the numbers.',
+  '\uD83C\uDFCB\uFE0F Some employers offer tax-exempt gym subsidies \u2014 worth asking HR.',
+  '\uD83D\uDCB9 Compound interest: \u00a3100/month invested at 7% grows to over \u00a3120,000 in 30 years.',
+  '\uD83C\uDF0D UK workers get 28 days of statutory paid holiday per year \u2014 use every single one.',
+  '\uD83D\uDD0D Marriage Allowance can transfer \u00a31,260 of unused personal allowance to your partner.',
+  '\uD83D\uDCEA Check your payslip for your employer\u2019s pension contribution \u2014 it\u2019s part of your total pay.',
+  '\uD83E\uDD73 Reached a new pay band? Celebrate \u2014 but watch for the 60% effective tax trap near \u00a3100k.',
+  '\uD83D\uDD1B Keep digital copies of all payslips \u2014 cloud storage means you\u2019ll never lose them.'
 ];
 
 function getDailyMsg() {
