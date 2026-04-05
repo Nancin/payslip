@@ -85,7 +85,7 @@ body.dark .toggle-thumb{
 .card-body{padding:1rem}
 .field{margin-bottom:.875rem}.field:last-child{margin-bottom:0}
 .field label{font-size:11px;font-weight:600;color:var(--text2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em}
-.field-hint{font-size:12px;color:var(--text3);margin-top:3px}
+.field-hint{font-size:11.5px;color:var(--text3);margin-top:3px}
 .input-wrap{position:relative}
 .input-wrap input{
   width:100%;height:40px;border-radius:var(--radius-sm);
@@ -433,9 +433,9 @@ function calc() {
 function updateEarn(c) {
   var e='';
   if(c.baseH>0) e+='<tr><td>Basic Pay <span class="tag t-base">Mon–Fri</span></td><td>'+fmtH(c.baseH)+' \u00d7 \u00a3'+fmtN(c.rate)+'</td><td>\u00a3'+fmtN(c.baseAmt)+'</td></tr>';
-  if(c.otH>0)   e+='<tr><td>Overtime <span class="tag t-ot">\u00d7'+c.otM+'</span></td><td>'+fmtH(c.otH)+' \u00d7 \u00a3'+fmtN(c.rate*c.otM)+'</td><td>\u00a3'+fmtN(c.otAmt)+'</td></tr>';
-  if(c.satH>0)  e+='<tr><td>Saturday <span class="tag t-sat">\u00d7'+c.wkM+'</span></td><td>'+fmtH(c.satH)+' \u00d7 \u00a3'+fmtN(c.rate*c.wkM)+'</td><td>\u00a3'+fmtN(c.satAmt)+'</td></tr>';
-  if(c.sunH>0)  e+='<tr><td>Sunday <span class="tag t-sun">\u00d7'+c.wkM+'</span></td><td>'+fmtH(c.sunH)+' \u00d7 \u00a3'+fmtN(c.rate*c.wkM)+'</td><td>\u00a3'+fmtN(c.sunAmt)+'</td></tr>';
+  if(c.otH>0)   e+='<tr><td>Overtime Mon-Fri <span class="tag t-ot">\u00d7'+c.otM+'</span></td><td>'+fmtH(c.otH)+' \u00d7 \u00a3'+fmtN(c.rate*c.otM)+'</td><td>\u00a3'+fmtN(c.otAmt)+'</td></tr>';
+  if(c.satH>0)  e+='<tr><td>Overtime Saturday <span class="tag t-sat">\u00d7'+c.wkM+'</span></td><td>'+fmtH(c.satH)+' \u00d7 \u00a3'+fmtN(c.rate*c.wkM)+'</td><td>\u00a3'+fmtN(c.satAmt)+'</td></tr>';
+  if(c.sunH>0)  e+='<tr><td>Overtime Sunday <span class="tag t-sun">\u00d7'+c.wkM+'</span></td><td>'+fmtH(c.sunH)+' \u00d7 \u00a3'+fmtN(c.rate*c.wkM)+'</td><td>\u00a3'+fmtN(c.sunAmt)+'</td></tr>';
   if(c.bonus>0) e+='<tr><td>Bonus<span class="tag t-bonus">extra</span></td><td>\u2014</td><td>\u00a3'+fmtN(c.bonus)+'</td></tr>';
   if(c.penAmt>0) e+='<tr><td>Pension <span class="tag t-base">sacrifice</span></td><td>\u2014</td><td style="color:var(--red)">\u2212\u00a3'+fmtN(c.penAmt)+'</td></tr>';
   e+='<tr class="total-row"><td>Total Gross</td><td></td><td>\u00a3'+fmtN(c.gross)+'</td></tr>';
@@ -443,8 +443,8 @@ function updateEarn(c) {
 }
 function updateDed(c) {
   var d='';
-  d+='<tr><td>Income Tax <span class="ded-note">'+v('it_rate')+'% from \u00a3'+fmtN(c.taxIT)+'</span></td><td>\u2212\u00a3'+fmtN(c.itAmt)+'</td></tr>';
-  d+='<tr><td>National Insurance <span class="ded-note">'+v('ni_rate')+'% from \u00a3'+fmtN(c.taxNI)+'</span></td><td>\u2212\u00a3'+fmtN(c.niAmt)+'</td></tr>';
+  d+='<tr><td>Income Tax</td><td>\u2212\u00a3'+fmtN(c.itAmt)+'</td></tr>';
+  d+='<tr><td>National Insurance</td><td>\u2212\u00a3'+fmtN(c.niAmt)+'</td></tr>';
   if(c.otherDed>0) d+='<tr><td>Other Deductions</td><td>\u2212\u00a3'+fmtN(c.otherDed)+'</td></tr>';
   d+='<tr class="total-row"><td>Total Deductions</td><td>\u2212\u00a3'+fmtN(c.totalDed)+'</td></tr>';
   document.getElementById('s-ded').innerHTML=d;
